@@ -1,0 +1,53 @@
+body{
+    margin-left:10em;
+    margin-right:10em;
+    background-image:linear-gradient(to right, black, white);
+}
+#title{
+    display:flex;
+    justify-content:center;
+    
+}
+h1{
+    color:white;
+    text-shadow:10px -10px 5px black;
+}
+
+#grid{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background-color:white;
+    border:0.1em dotted black;
+    width:600px;
+    height:600px;
+    margin:0 auto; 
+}
+ 
+.btn{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex:1;
+}
+button{
+    padding:1em; 
+    margin:1em;
+    width:400px;
+}
+button:hover{
+    transform:scale(1.1);
+    border-color:#ffc600;
+    box-shadow:0 0 1rem #ffc600;
+}
+.grid{
+    background-color:black;
+    border:0.01em solid black;
+}
+ 
+ 
+
+
+
+
+ 
