@@ -1,6 +1,15 @@
+
+/** check window resize to tell user to not resize below certain width */
+window.addEventListener('resize', () =>{
+    if(window.innerWidth < 900){
+        alert("Screen size below preferred value!");
+    }
+});
+
 const grid=document.querySelector('#grid');
 let gridDimension=2;
 createGame(grid, gridDimension);
+
 function onMouseOver(){
     //change the color of boxes 
     let grids=document.querySelectorAll('.grid');
@@ -12,16 +21,41 @@ function onMouseOver(){
     
 }
 
+function promptUser(){
+    gridDimension=prompt("please enter the dimension value between 1 to 90!", "16");
+    if(gridDimension <= 90 && gridDimension > 0){
+        createGame(grid, gridDimension);
+    }else{
+        promptUser();
+    }
+}
 let dim = document.querySelector('#setDimension');
-dim.addEventListener('click', function(){
-    gridDimension=prompt("please enter the dimension", "16");
-    createGame(grid, gridDimension);
+dim.addEventListener('click', () => {
+    promptUser();
 });
 
 let clr=document.querySelector('#clearBox');
-clr.addEventListener('click', function(){
+clr.addEventListener('click', () => {
     createGame(grid, gridDimension);
+   
 });
+/**
+ * html2canvas function is used to save the image
+ * https://html2canvas.hertzen.com/
+ */
+let save=document.querySelector('#save');
+save.addEventListener('click', () =>{
+    html2canvas(document.querySelector('#grid'),{
+        onrendered: canvas =>{
+            let image_ = new Image();
+            image_.src = canvas.toDataURL("image/png");
+            let newWindow = window.open("");
+            newWindow.document.write(image_.outerHTML);
+
+        }
+    });
+});
+
 
 function createGame(grid, gridDimension){
     grid.innerHTML=''; 		// remove previous dom objects
@@ -39,9 +73,7 @@ function createBoxes(g,gd){
 	for(let j=0;j<gd;j++){
 	    let box= document.createElement('div');
 	    box.classList.add('grid');
-	    // box.classList.add('grid'+j);
 	    box.style.opacity=0;	// initially transparent
-	    // cols.textContent= j;
 	    box.style.backgroundColor='black';
 	    row.appendChild(box);	
 	}
@@ -52,14 +84,14 @@ function createBoxes(g,gd){
 
 // set the size of the boxes
 function boxSize(dimension){
-    console.log('Setting box size');
     let d= Math.floor(600/dimension);
-    let box=document.querySelectorAll('.grid');
-    box.forEach(g => {
-	g.style.height = `${d}px`;
-	g.style.width = `${d}px`;
+    let boxes=document.querySelectorAll('.grid');
+    boxes.forEach(box => {
+        box.style.height = `${d}px`;
+        box.style.width = `${d}px`;
     });
 }
+
 
 
 

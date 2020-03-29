@@ -7,11 +7,17 @@
     <div id="title">
       <h1>Etch A Sketch</h1>
     </div>
-    <div class='btn'>
-      <button id="setDimension">Set Dimension</button>
-      <button id="clearBox">Reset</button>
+    <div id="mainContainer">
+      <div class='btn'>
+        <button id="setDimension">Dimension</button>
+        <button id="clearBox">Reset</button>
+        <button id="save">Save</button>
+      </div>
+      <div id="grid"></div>
     </div>
-    <div id="grid"></div>
+
+    <!-- Uses html2canvas to save div to image -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="javascript/game.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </body>
